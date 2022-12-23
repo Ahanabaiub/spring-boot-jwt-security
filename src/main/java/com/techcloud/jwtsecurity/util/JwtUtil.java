@@ -13,8 +13,7 @@ public class JwtUtil {
     private Claims claims;
 
     public String extractUserName(String token){
-        Claims claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
-        this.claims = claims;
+        this.claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
         return claims.get("name").toString();
     }
 
