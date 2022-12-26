@@ -31,10 +31,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         String userName = null;
         if(jwt!=null){
-            userName = jwtUtil.extractUserName(jwt);
+            userName = jwtUtil.extractUsername(jwt);
         }
 
-        if(userName!=null){
+        if(userName!=null && SecurityContextHolder.getContext().getAuthentication()==null){
             UserDetails userDetails = customUserDetailService.loadUserByUsername(userName);
 
             if(jwtUtil.validateToken(jwt, userDetails)){
